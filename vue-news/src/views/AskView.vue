@@ -1,17 +1,19 @@
 <template>
     <div>
-        <div v-for="item in fetchedAsk" v-bind:key="item.id">{{item.title}}</div>
+        <list-item></list-item>
     </div>
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex';
+import ListItem from '../components/ListItem.vue';
 
 export default {
+  components: { ListItem },
+  /*
     computed:{
         // #4 배열표기법
         ...mapGetters([
-            'fetchedAsk',
+            'fetchAsk',
         ]),  
 
         // #3 객체표기법(많이씀)
@@ -34,9 +36,6 @@ export default {
     created(){
         this.$store.dispatch('FETCH_ASKS');
     },
+    */
 }
 </script>
-
-<style>
-
-</style>

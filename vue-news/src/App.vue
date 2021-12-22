@@ -6,7 +6,9 @@
     <tool-bar></tool-bar>
     <!-- url이 만약 news 라면-->
     <!--<NewsView></NewsView>-->
-    <router-view></router-view>
+    <transition name="page">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -24,5 +26,23 @@ export default {
 body{
   padding: 0;
   margin: 0;
+}
+a{
+  color: #34495e;
+  text-decoration: none; /* anchor 태그 밑줄 사라짐 */
+}
+a:hover{
+  color:#42b883;
+  text-decoration: underline;
+}
+a.router-link-exact-active.router-link-active{
+  text-decoration: underline;
+}
+/* Router Transition */ 
+.page-enter-active, .page-leave-active{
+  transition: opacity .5s;
+}
+.page-enter, .page-leave-to{
+  opacity: 0;
 }
 </style>

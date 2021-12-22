@@ -1,15 +1,15 @@
 <template>
     <div>
-        <div v-for="news in this.$store.state.news" v-bind:key="news.id">{{news.title}}</div>
+        <list-item></list-item>
     </div>
 </template>
 
 <script>
-import { fetchNewsList } from '../api/index.js';
+import ListItem from '../components/ListItem.vue';
 
 export default {
-    created(){
-        this.$store.dispatch('FETCH_NEWS');
+    components:{
+        ListItem,
     }
 }
 </script>

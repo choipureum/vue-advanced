@@ -11,6 +11,7 @@ Vue.use(VueRouter);
 
 export const router = new VueRouter({
     mode: 'history', // 컴포넌트 전환간 #/(해시값) 값 없애줌
+    //routes도 모듈화 가능하다.
     routes:[
         {
             path:'/',
@@ -18,22 +19,28 @@ export const router = new VueRouter({
         },
         {
             path: '/news', //url 주소
+            name:'news',
             component: NewsView, //url 주소로 갔을때 표시될 컴포넌트
         },
         {
             path: '/ask',
+            name: 'ask',
             component: AskView,
         },
         {
             path: '/jobs',
+            name: 'jobs',
             component: JobsView,
         },
         {
-            path:'/user',
+            //동적라우팅
+            path:'/user/:id',
+            name:'user',
             component: UserView,   
         },
         {
-            path:'/item',
+            path:'/item/:id',
+            name: 'item',
             component: ItemView,   
         },
     ]
