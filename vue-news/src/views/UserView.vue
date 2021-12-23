@@ -1,15 +1,21 @@
 <template>
     <div>
-        <p>{{ userInfo.id }}</p>
-        <p>{{ userInfo.karma }}</p>
-        <p>{{ userInfo.created }}</p>
+        <user-profile :info="userInfo">
+            <!-- 슬롯 정의 -->
+            <div slot="username">{{userInfo.id}}</div>
+            <span slot="time">{{ 'Joined' + userInfo.created}}, </span>
+            <span slot="karma">{{ userInfo.karma }}</span>
+        </user-profile>
     </div>
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex';
+import UserProfile from '../components/UserProfile.vue';
 
 export default {
+    components:{
+        UserProfile,
+    },  
     computed:{
         userInfo(){
             return this.$store.state.user;
@@ -19,9 +25,10 @@ export default {
         const userName = this.$route.params.id;
         this.$store.dispatch('FETCH_USER', userName);
     },
+    
 }
 </script>
 
-<style scoped>
+<style>
 
 </style>

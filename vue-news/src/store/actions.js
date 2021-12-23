@@ -4,6 +4,7 @@ import {
     fetchJobsList, 
     fetchUserInfo ,
     fetchItemInfo,
+    fetchList,
 } from '../api/index.js';
 
 export default {
@@ -12,6 +13,7 @@ export default {
             .then(response => {
                 //state에 담기위해선 mutation을 이용해야만 함
                 context.commit('SET_NEWS', response.data);
+                return response; //반환가능
             })
             .catch(error => {
                 console.log(error)
@@ -54,5 +56,11 @@ export default {
             .catch(error =>{
                 console.log(error);
             });
+    },
+    //
+    FETCH_LIST({commit}, pageName){
+        fetchList(pageName)
+        .then(({data})=> commit('SET_LIST', data))
+        .catch(error => console.log(error));
     }
 }

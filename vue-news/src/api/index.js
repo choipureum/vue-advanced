@@ -28,6 +28,10 @@ function fetchItemInfo(itemid){
     return axios.get(`${config.baseUrl}item/${itemid}.json`);
 }
 
+//통일된 api함수
+function fetchList(pageName){
+    return axios.get(`${config.baseUrl}${pageName}/1.json`);
+}
 
 export{
     fetchNewsList,
@@ -35,5 +39,6 @@ export{
     fetchAskList,
     fetchUserInfo,
     fetchItemInfo,
+    fetchList,
 }
 

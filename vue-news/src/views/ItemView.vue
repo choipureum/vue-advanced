@@ -1,20 +1,15 @@
 <template>
     <div>
+        <!-- 사용자 정보 -->
+        <!-- 공통컴포넌트화 -->
+        <user-profile :info="fetchItem">
+            <!-- 슬롯 정의 -->
+            <router-link slot="username" :to="`/user/${fetchItem.user}`">
+                {{ fetchItem.user}}
+            </router-link>
+            <span slot="time">{{'Posted ' + fetchItem.time_ago}}</span>
+        </user-profile>
         <section>
-            <!-- 질문 상세 정보 -->
-            <div class="user-container">
-                <div>
-                    <i class="fas fa-user"></i>
-                </div>
-                <div class="user-description">
-                    <router-link v-bind:to="`/user/${fetchItem.user}`">
-                    {{ fetchItem.user }}
-                    </router-link>
-                    <div class="time">
-                        {{ fetchItem.time_ago }}
-                    </div>
-                </div>        
-            </div>
             <h2>{{ fetchItem.title }}</h2>
         </section>
         <section>
@@ -25,9 +20,13 @@
 </template>
 
 <script>
+import UserProfile from '../components/UserProfile.vue';
 import { mapGetters } from 'vuex';
 
 export default {
+    components:{
+        UserProfile,
+    },
     computed:{
         ...mapGetters(['fetchItem'])  
     },

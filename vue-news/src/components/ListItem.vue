@@ -44,6 +44,8 @@
 export default {
     computed:{
         listItems(){
+            return this.$store.state.list;
+            /*
             const name = this.$route.name;
             let pageStatus;
 
@@ -56,23 +58,26 @@ export default {
             else if(name === 'jobs'){
                 pageStatus = this.$store.state.jobs;
             }
-            return pageStatus;  
+            return pageStatus; 
+            */ 
         }
     },
     created(){
+        /*
         const name = this.$route.name;
-        let pagnName;
+        let pageName;
 
         if(name === 'news'){
-            pagnName = 'FETCH_NEWS';
+            pageName = 'FETCH_NEWS';
         }
         else if(name === 'ask'){
-            pagnName = 'FETCH_ASK';
+            pageName = 'FETCH_ASK';
         }
         else if(name === 'jobs'){
-            pagnName = 'FETCH_JOBS';
+            pageName = 'FETCH_JOBS';
         }
-        this.$store.dispatch(pagnName);    
+        this.$store.dispatch(pageName);  
+        */
     }
 }
 </script>
