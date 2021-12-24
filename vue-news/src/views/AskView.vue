@@ -7,10 +7,18 @@
 <script>
 import ListItem from '../components/ListItem.vue';
 import ListMixin from '../mixins/ListMixin.js';
+import SpinnerMixin from '../mixins/SpinnerMixin.js';
+import bus from '../utils/bus.js';
 
 export default {
   components: { ListItem },
-  mixins: [ListMixin],
+  mixins: [SpinnerMixin],
+  /* mixin 처리 가능
+  mounted(){
+    bus.$emit('end:spinner');
+  },
+    */
+  //mixins: [ListMixin],
   /*
     computed:{
         // #4 배열표기법

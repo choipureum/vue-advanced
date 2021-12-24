@@ -8,12 +8,19 @@
 import ListItem from '../components/ListItem.vue';
 import bus from '../utils/bus.js';
 import ListMixin from '../mixins/ListMixin.js';
+import SpinnerMixin from '../mixins/SpinnerMixin.js';
 
 export default {
     components:{
         ListItem,
     },
-    mixins: [ListMixin],
+    /* mixin 처리 가능
+    mounted(){
+        bus.$emit('end:spinner');
+    }
+    */
+    mixins: [SpinnerMixin],
+    //mixins: [ListMixin],
     /*
     created(){
         bus.$emit('start:spinner');

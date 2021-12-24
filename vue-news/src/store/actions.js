@@ -22,7 +22,7 @@ export default {
     //ES6 Destructuring(구조 분해 문법) 적용 context.commit = {commit} (https://joshua1988.github.io/es6-online-book/destructuring.html)
     // import  {} from ~ 에서도 사용하는 부분임
     FETCH_ASK({commit}){
-        fetchAskList()
+        return fetchAskList()
             .then(({ data }) => {
                 commit('SET_ASKS', data);
             })
@@ -31,16 +31,17 @@ export default {
             })
     },
     FETCH_JOBS(context){
-        fetchJobsList()
+        return fetchJobsList()
             .then(response => {
                 context.commit('SET_JOBS', response.data);
+                return response;
             })
             .catch(error => {
                 console.log(error);
             })
     },
     FETCH_USER({ commit }, name){
-        fetchUserInfo(name)
+        return fetchUserInfo(name)
             .then(({data}) =>{
                 commit('SET_USER', data);
             })
@@ -49,18 +50,25 @@ export default {
             });
     },
     FETCH_ITEM({commit}, itemid){
-        fetchItemInfo(itemid)
+        return fetchItemInfo(itemid)
             .then(({data}) => {
                 commit('SET_ITEM', data);
+                return response;
             }) 
             .catch(error =>{
                 console.log(error);
             });
     },
     //
-    FETCH_LIST({commit}, pageName){
-        fetchList(pageName)
-        .then(({data})=> commit('SET_LIST', data))
-        .catch(error => console.log(error));
-    }
+    async FETCH_LIST(context, pageName){
+        const response = await fetchList(pageName);
+        context.commit('SET_LIST', response.data);
+        return response;
+    },
+    // promise 변경 // 정규 패턴
+    async FETCH_ASYNC(context){
+        const response = await fetchNewsList();
+        context.commit('SET_NEWS', response.data);
+        return response; //반환해줘야 이후 .then().catch() 처리가 가능
+    },
 }

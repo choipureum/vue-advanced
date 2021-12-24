@@ -8,9 +8,14 @@
 //import { mapGetters, mapState } from 'vuex';
 import ListItem from '../components/ListItem.vue';
 import ListMixin from '../mixins/ListMixin.js';
+import bus from '../utils/bus.js';
 
 export default {
-    components:{ListItem},
+  components: { ListItem },
+  mounted(){
+    bus.$emit('end:spinner');
+  },
+  //mixins: [ListMixin],
     /*
     computed:{
         ...mapGetters([
