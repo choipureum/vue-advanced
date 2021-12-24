@@ -1,22 +1,24 @@
 <template>
   <div>
     <h1>Chart.js</h1>
-    <canvas id="myChart" width="400" height="400"></canvas>
+    <bar-chart v-bind:propsdata="chartDataSet"></bar-chart>
+    <line-chart></line-chart>
   </div>
 </template>
 
 <script>
-import Chart from 'chart.js';
+import BarChart from './components/BarChart.vue';
+import LineChart from './components/LineChart.vue';
 
 export default{
   // 컴포넌트 속성 && 인스턴스 옵션
-  mounted(){
-    const ctx = document.getElementById('myChart');
-    const myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
+  components:{
+    BarChart,
+    LineChart,
+  },
+  data(){
+    return{
+      chartDataSet:  [{
                 label: '# of Votes',
                 data: [12, 19, 3, 5, 2, 3],
                 backgroundColor: [
@@ -36,17 +38,14 @@ export default{
                     'rgba(255, 159, 64, 1)'
                 ],
                 borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-  }
+            }],
+    }
+  },
+  created(){
+    getChartData()
+    .then(response => this.chartDataSet = response.data)
+    .catch(error => console.log(error));
+  },
 }
 
 

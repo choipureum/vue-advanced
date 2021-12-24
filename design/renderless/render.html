@@ -1,0 +1,26 @@
+<html>
+<head></head>
+<body>
+    <div id="app">
+        <!-- 인스턴스의 render -->
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js">
+        new Vue({
+            el: '#app',
+            data(){
+                return{
+                    message: 'Hello Vue',
+                }
+            },
+            //template:`<p>{{ message }}</p>`,
+            //render 가 이미 함축되어 있다
+            render(createElement){
+                //return createElement('태그이름(p)', '태그속성(Hello Vue)', '하위 태그 내용');
+                return createElement('p',this.message);
+            },
+        })
+    </script>
+</body>
+</html>
